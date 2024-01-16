@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>Popis Vozaca</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/home-style.css">
+    
+<style> 
+ .logo1 {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: auto;
+    height: 115px;
+    animation: pulse 2s infinite;
+}
+
+.popis5{
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+.transparent-image {
+    width: auto; 
+    height: auto; 
+    display: block;
+    margin: 20 0;
+    position: absolute;
+    top: 1200px;
+    left: 0;
+    z-index: -1; 
+}
+
+
+table {
+    margin: 0 auto;
+    position: relative; 
+    z-index: 1; 
+}
+
+</style>
+    
+</head>
+<body>
+<header>
+    <img src="/static/logo.png" alt="logo" class="logo1">
+    <h1>Formula 1</h1>
+</header>
+<nav>
+    <a href="/show_sponzor" title="Sponzori">Sponzori</a>
+    <a href="/show_tim" title="Timovi">Timovi</a>
+    <a href="/show_vozaci" title="Vozači">Vozači</a>
+    <a href="/show_automobil" title="Automobili">Automobili</a>
+    <a href="/show_utrka" title="Utrke">Utrke</a>
+    <a href="/show_staza" title="Staze">Staze</a>
+    <a href="/show_nagrada" title="Nagrade">Nagrade</a>
+    <a href="/show_prvenstvo" title="Prvenstva">Prvenstva</a>
+    <a href="/show_rezultat" title="Rezultati">Rezultati</a>
+</nav>
+<main>
+    <h1 class="popis5">Popis Vozaca</h1>
+    
+
+    <img src="/static/formuladriver.png" alt="Transparentna slika" class="transparent-image">
+    
+    <table>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Država</th>
+            <th>Datum Rođenja</th>
+            <th>Tim</th>
+            
+        </tr>
+        {% for vozac in vozaci_data %}
+        <tr>
+            <td>{{ vozac[2] }}</td>
+            <td>{{ vozac[3] }}</td>
+            <td>{{ vozac[4] }}</td>
+            <td>{{ vozac[5] }}</td>
+            <td><a href="/show_tim">{{ vozac[6] }}</a></td>
+            <td>
+                {% if vozac[0] == session.nedavno_dodani_vozac_id %}
+                <form method="POST" action="/delete_vozac/{{ vozac[0] }}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="delete-button" value="Izbriši">
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+    <a href="/" class="btn btn-primary small-button">Povratak na početnu stranicu</a>
+    <br>
+    
+    <a href="/insert_vozac_form" class="btn btn-primary small-button" style="margin: 8px 0;">Dodajte Vozaca</a>
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

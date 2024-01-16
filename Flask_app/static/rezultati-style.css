@@ -1,0 +1,103 @@
+@font-face {
+    font-family: 'Formula1';
+    src: url('static/fonts/Formula1-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Formula1', Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+h1 {
+    text-align: center;
+}
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.delete-button {
+    background-color: #d32f2f;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.delete-button:hover {
+    background-color: #b71c1c;
+}
+.logo1 {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: auto; 
+    height: 115px; 
+}
+.custom-dropdown {
+    left: 0px;
+    width: 150px; 
+    font-size: 0.8rem; 
+}
+.form-margin-adjust {
+    margin-bottom: 0; 
+}
+
+.button-margin-adjust {
+    margin-top: 0.5rem; 
+}
+
+nav a:hover {
+    transform: scale(1.1);
+}
+
+nav a:hover::after {
+    content: attr(title);
+    position: absolute;
+    background: #e32417;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+nav a:hover::after {
+    opacity: 1;
+}
+@keyframes pulse {
+    0% {
+        transform: scale(0.5);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.logo1 {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: auto;
+    height: 115px;
+    animation: pulse 2s infinite;
+    
+}

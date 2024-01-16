@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>Popis Utrka</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/home-style.css">
+    
+<style> 
+ .logo1 {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: auto;
+    height: 115px;
+    animation: pulse 2s infinite;
+    
+}
+
+.popis7{
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+</style>
+    
+    
+
+    
+</head>
+<body>
+<header>
+    <img src="/static/logo.png" alt="logo" class="logo1">
+    <h1>Formula 1</h1>
+</header>
+<nav>
+    <a href="/show_sponzor" title="Sponzori">Sponzori</a>
+    <a href="/show_tim" title="Timovi">Timovi</a>
+    <a href="/show_vozaci" title="Vozači">Vozači</a>
+    <a href="/show_automobil" title="Automobili">Automobili</a>
+    <a href="/show_utrka" title="Utrke">Utrke</a>
+    <a href="/show_staza" title="Staze">Staze</a>
+    <a href="/show_nagrada" title="Nagrade">Nagrade</a>
+    <a href="/show_prvenstvo" title="Prvenstva">Prvenstva</a>
+    <a href="/show_rezultat" title="Rezultati">Rezultati</a>
+</nav>
+<main>
+    <h1 class="popis7">Popis Utrka</h1>
+
+    <table style="width: 98%;">
+        <tr>
+            <th>Naziv Utrke</th>
+            <th>Datum Početka</th>
+            <th>Datum Kraja</th>
+            <th>Prvenstvo</th>
+            <th>Nagrada</th>
+            <th>Staza</th>
+            
+        </tr>
+        {% for utrka in utrka_data %}
+        <tr>
+            <td>{{ utrka[1] }}</td>
+            <td>{{ utrka[2] }}</td>
+            <td>{{ utrka[3] }}</td>
+            <td><a href="/show_prvenstvo">{{ utrka[4] }}</a></td>
+            <td><a href="/show_nagrada">{{ utrka[5] }}</a></td>
+            <td><a href="/show_staza">{{ utrka[6] }}</a></td>
+            
+            <td>
+                {% if utrka[0] == session.get('nedavno_dodana_utrka_id', None) %}
+                <form method="POST" action="/delete_utrka/{{ utrka[0] }}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="delete-button" value="Izbriši">
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    
+
+    <a href="/" class="btn btn-primary small-button">Povratak na početnu stranicu</a>
+    <br>
+    
+    
+
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

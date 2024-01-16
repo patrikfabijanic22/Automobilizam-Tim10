@@ -1,0 +1,117 @@
+@font-face {
+    font-family: 'Formula1';
+    src: url(Formula1-Regular.otf);
+    font-weight: 200;
+    font-style: 200;
+}
+
+body {
+    font-family: 'Formula1', Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+header {
+    background: linear-gradient(135deg, #e32417, #000000);
+    color: white;
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+header h1 {
+    font-size: 82px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+    background: linear-gradient(135deg, #e32417, #000000);
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+nav a:hover {
+    transform: scale(1.1);
+}
+
+nav a:hover::after {
+    content: attr(title);
+    position: absolute;
+    background: #e32417;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+nav a:hover::after {
+    opacity: 1;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #e32417;
+    color: white;
+}
+
+.prva {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    border: 3px solid red;
+    box-shadow: 0px 0px 20px 5px rgba(255, 0, 0, 0.6);
+}
+@keyframes pulse {
+    0% {
+        transform: scale(0.5);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: auto;
+    height: 220px;
+    animation: pulse 2s infinite;
+    
+}
+.prva {
+    transition: transform 0.3s ease;
+}
+
+.prva:hover {
+    transform: scale(1.05);
+}
+

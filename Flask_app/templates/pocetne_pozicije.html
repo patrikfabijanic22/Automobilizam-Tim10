@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>Pocetne Pozicije</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/home-style.css">
+    
+<style> 
+ .logo1 {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: auto;
+    height: 115px;
+    animation: pulse 2s infinite;
+    
+}
+
+.popis10{
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+</style>
+    
+    
+
+    
+</head>
+<body>
+<header>
+    <img src="/static/logo.png" alt="logo" class="logo1">
+    <h1>Formula 1</h1>
+</header>
+<nav>
+    <a href="/show_sponzor" title="Sponzori">Sponzori</a>
+    <a href="/show_tim" title="Timovi">Timovi</a>
+    <a href="/show_vozaci" title="Vozači">Vozači</a>
+    <a href="/show_automobil" title="Automobili">Automobili</a>
+    <a href="/show_utrka" title="Utrke">Utrke</a>
+    <a href="/show_staza" title="Staze">Staze</a>
+    <a href="/show_nagrada" title="Nagrade">Nagrade</a>
+    <a href="/show_prvenstvo" title="Prvenstva">Prvenstva</a>
+    <a href="/show_rezultat" title="Rezultati">Rezultati</a>
+</nav>
+<main>
+    
+    <h1 class="popis10">Početne Pozicije Utrke <br> {{ naziv_utrke }}</h1>
+    <table>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Najkraće Vrijeme</th>
+        </tr>
+        {% for pozicija in data %}
+        <tr>
+            <td>{{ pozicija[2] }}</td>
+            <td>{{ pozicija[3] }}</td>
+            <td>{{ pozicija[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    
+
+    <a href="/" class="btn btn-primary small-button">Povratak na početnu stranicu</a>
+    <br>
+    
+   
+
+
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

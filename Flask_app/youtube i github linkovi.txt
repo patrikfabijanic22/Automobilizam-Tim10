@@ -1,0 +1,7 @@
+https://www.youtube.com/watch?v=3fciHspNHng - Youtube
+
+-David Kokalovic (uvod, dijagrami, tablice) - 0:00 do 19:09
+-David Tarcuki (procedure, okidaci, funkcije, transakcije) - 19:09 do 57:07
+-Patrik Fabijanic (procedure, okidaci, funkcije, aplikacija) - 57:07 do 1:25:17
+
+https://github.com/patrikfabijanic22/Automobilizam-Tim10 - Github

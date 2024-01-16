@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>Popis Timova</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/home-style.css">
+    
+<style> 
+ .logo1 {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: auto;
+    height: 115px;
+    animation: pulse 2s infinite;
+    
+}
+
+.popis4{
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+.table-aktivnost {
+    float: left;
+    margin-right: 20px;
+    position: absolute;
+    top: 800px;
+    left: 20px;
+}
+
+.tim
+{
+    height: 1050px;
+    float: right; 
+    margin-left: 20px;
+    margin-top: -120px;
+}
+
+</style>
+    
+
+    
+</head>
+<body>
+<header>
+    <img src="/static/logo.png" alt="logo" class="logo1">
+    <h1>Formula 1</h1>
+</header>
+<nav>
+    <a href="/show_sponzor" title="Sponzori">Sponzori</a>
+    <a href="/show_tim" title="Timovi">Timovi</a>
+    <a href="/show_vozaci" title="Vozači">Vozači</a>
+    <a href="/show_automobil" title="Automobili">Automobili</a>
+    <a href="/show_utrka" title="Utrke">Utrke</a>
+    <a href="/show_staza" title="Staze">Staze</a>
+    <a href="/show_nagrada" title="Nagrade">Nagrade</a>
+    <a href="/show_prvenstvo" title="Prvenstva">Prvenstva</a>
+    <a href="/show_rezultat" title="Rezultati">Rezultati</a>
+</nav>
+<main>
+    
+    <h1 class="popis4">Popis Timova</h1>
+    <table>
+        <tr>
+            <th>Naziv</th>
+            <th>Država</th>
+            <th>Vlasnik</th>
+            <th>Godina Osnivanja</th>
+            <th>Trener</th>
+    
+        </tr>
+        {% for tim in tim_data %}
+        <tr>
+            <td>{{ tim[1] }}</td>
+            <td>{{ tim[2] }}</td>
+            <td>{{ tim[3] }}</td>
+            <td>{{ tim[4] }}</td>
+            <td>{{ tim[5] }}</td>
+            <td> 
+                {% if tim[0] == session.get('nedavno_dodani_tim_id', None) %}
+                <form method="POST" action="/delete_tim/{{ tim[0] }}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="gumb" value="Izbriši">
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="table-aktivnost">
+        <h5 style="text-align: left;">Aktivnost Tima</h5>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Naziv Tima</th>
+                    <th>Aktivnost u Utrkama</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for tim in aktivnost_tima_data %}
+                <tr>
+                    <td>{{ tim[1] }}</td>
+                    <td>{{ tim[2] }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <a href="/" class="btn btn-primary small-button">Povratak na početnu stranicu</a>
+    <br>
+    
+    <a href="/insert_tim_form" class="btn btn-primary small-button" style="margin: 8px 0;">Dodajte Tim</a>
+    <br>
+
+    <img src="/static/timovi.png" alt="tim" class="tim">
+
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

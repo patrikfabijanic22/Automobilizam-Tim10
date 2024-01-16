@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formula 1 Početna</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/home-style.css">
+    <style>
+
+     body {
+            background: rgb(2, 0, 36);
+            background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(255, 30, 30, 1) 0%, rgba(0, 0, 0, 1) 100%);
+        }
+
+        .text-background {
+            background-color: black;
+            color: white;
+            padding: 15px;
+            margin-left: 50px;
+            border-radius: 10px;
+            border: 3px solid red;
+            box-shadow: 0px 0px 20px 5px rgba(255, 0, 0, 0.6);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .text-background:hover {
+            transform: scale(1.05);
+        }
+
+        .text-background::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            z-index: -1;
+        }
+
+        .prva {
+            max-width: 80%;
+            height: 500px;
+            border-radius: 10px;
+            border: 3px solid red;
+            box-shadow: 0px 0px 20px 5px rgba(255, 0, 0, 0.6);
+            position: relative;
+        }
+
+        .prva::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            z-index: -1;
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            width: auto;
+            height: 115px;
+        }
+
+        .container-fluid {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .text-container,
+        .image-container {
+            padding: 5px 15px;
+        }
+
+        .text-container {
+            text-align: left;
+        }
+
+        .image-container {
+            text-align: right;
+        }
+
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+        }
+
+        .horizontal-line {
+            width: 15cm;
+            height: 5px;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .navbar {
+            background-color: #1E1E1E;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .nav-menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle::after {
+            margin-left: 5px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 200px;
+            z-index: 1;
+            border: 1px solid #444;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #555;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="static/logo.png" alt="logo" class="logo">
+
+        <h1>Formula 1</h1>
+    </header>
+    <nav>
+        <a href="/show_sponzor" title="Sponzori">Sponzori</a>
+        <a href="/show_tim" title="Timovi">Timovi</a>
+        <a href="/show_vozaci" title="Vozači">Vozači</a>
+        <a href="/show_automobil" title="Automobili">Automobili</a>
+        <a href="/show_utrka" title="Utrke">Utrke</a>
+        <a href="/show_staza" title="Staze">Staze</a>
+        <a href="/show_nagrada" title="Nagrade">Nagrade</a>
+        <a href="/show_prvenstvo" title="Prvenstva">Prvenstva</a>
+        <a href="/show_rezultat" title="Rezultati">Rezultati</a>
+        
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Pocetne Pozicije</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ url_for('pocetne_pozicije', id_utrka=1000) }}">GULF AIR BAHRAIN GRAND PRIX</a>
+                <a class="dropdown-item" href="{{ url_for('pocetne_pozicije', id_utrka=1001) }}">STC SAUDI ARABIAN GRAND PRIX</a>
+                <a class="dropdown-item" href="{{ url_for('pocetne_pozicije', id_utrka=1002) }}">ROLEX AUSTRALIAN GRAND PRIX</a>
+                <a class="dropdown-item" href="{{ url_for('pocetne_pozicije', id_utrka=1003) }}">AZERBAIJAN GRAND PRIX</a>
+                <a class="dropdown-item" href="{{ url_for('pocetne_pozicije', id_utrka=1004) }}">CRYPTO.COM MIAMI GRAND PRIX</a>
+                <a class="dropdown-item" href="{{ url_for('pocetne_pozicije', id_utrka=1005) }}">QATAR AIRWAYS GRAN PREMIO DEL MADE IN ITALY E DELL EMILIA-ROMAGNA</a>
+                <a class="dropdown-item" href="{{ url_for('pocetne_pozicije', id_utrka=1006) }}">GRAND PRIX DE MONACO</a>
+                <a class="dropdown-item" href="{{ url_for('pocetne_pozicije', id_utrka=1007) }}">AWS GRAN PREMIO DE ESPAÑA</a>
+                <a class="dropdown-item" href="{{ url_for('pocetne_pozicije', id_utrka=1008) }}">PIRELLI GRAND PRIX DU CANADA</a>
+                <a class="dropdown-item" href="{{ url_for('pocetne_pozicije', id_utrka=1009) }}">ROLEX GROSSER PREIS VON ÖSTERREICH</a>
+                
+            </div>
+        </div>
+    </nav>
+    <main class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="text-background">
+                    <h5 style="text-align: left;">Vijesti</h5>
+                    <br>
+
+                    <h2>Max Verstappen Osvaja Prvo Mjesto na Velikoj Nagradi Monaka</h2>
+                    <br>
+                    <p>Max Verstappen, vozač tima Red Bull Racing, osvojio je prvo mjesto na uzbudljivoj Velikoj Nagradi Monaka. U trci koja je bila puna strateških odluka i iznenađenja, Verstappen je pokazao izuzetnu vještinu i koncentraciju. Njegov najbliži suparnik, Charles Leclerc iz Ferrarija, završio je na drugom mjestu, dok je treće mjesto pripalo Lewisu Hamiltonu iz Mercedesa.</p>
+                    <div class="center-container">
+                        <div class="horizontal-line"></div>
+                    </div>
+                    
+                    <h2>Ferrari Najavljuje Novi Motor za Sljedeću Sezonu </h2>
+                    <br>
+                    <p>Scuderia Ferrari objavila je uvođenje potpuno novog motora za sljedeću sezonu Formule 1. Novi motor, koji obećava veću snagu i bolju efikasnost goriva, rezultat je višegodišnjeg razvoja i testiranja. Također su najavljene promjene u aerodinamičkom dizajnu automobila, s ciljem poboljšanja ukupnih performansi.</p>
+                    <div class="center-container">
+                        <div class="horizontal-line"></div>
+                    </div>
+                    <h2>Lewis Hamilton Razgovara o Svojoj Budućnosti u Formuli 1</h2>
+                    <br>
+                    <p>U ekskluzivnom intervjuu, Lewis Hamilton razgovarao je o svojim planovima i budućnosti u Formuli 1. Sedmerostruki svjetski prvak izrazio je svoju posvećenost sportu te naglasio svoju želju da nastavi natjecanje na najvišoj razini. Hamilton je također spomenuo važnost održivosti i ekološke svijesti unutar sporta.</p>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="static/formula.png" alt="Formula 1 Car" class="prva">
+                <img src="static/formula2.jpg" alt="Formula 2 Car" class="prva" style="top: 25px;">
+                <img src="static/formuladriver.png" alt="Formula 3 Car" class="prva" style="display: none;">
+                <img src="static/timovi.png" alt="Formula 4 Car" class="prva" style="display: none;">
+            </div>
+        </div>
+        
+        
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+     
+
+
+    
+</body>
+</html>

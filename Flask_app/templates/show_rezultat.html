@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popis Rezultata</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/rezultati-style.css">
+    <link rel="stylesheet" href="static/home-style.css">
+    <style>
+        @font-face {
+            font-family: 'Formula1';
+            src: url('static/Formula1-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family:'Formula1', Arial, sans-serif;
+            background-color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+        .popis {
+            text-align: center;
+            color: rgb(0, 0, 0);
+        }
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 5px;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .delete-button {
+            background-color: #d32f2f;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .delete-button:hover {
+            background-color: #b71c1c;
+        }
+        .logo {
+            position: absolute; 
+            top: 10px; 
+            left: 50px; 
+            width: auto; 
+            height: 220px; 
+        }
+        .bodovi {
+            display: none;
+            opacity: 0;
+            transition: all 1s ease-in-out;
+            transform: translateY(-20px);
+        }
+        .bodovi.prikazi {
+            display: table-cell;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .divider-row {
+            position: relative;
+            border-top: 50px solid red;
+        }
+        .divider-row::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -50px; 
+            border-top: 25px solid black;  
+            width: 100%;
+        }
+        .bodovi-tablica {
+            max-width: 250px; 
+            position: fixed;
+            bottom: 75px;
+            left: 20px;
+        
+        }
+     
+
+    </style>
+
+    <script>
+          function prikaziBodove() {
+            var bodovi = document.getElementsByClassName('bodovi');
+            for (var i = 0; i < bodovi.length; i++) {
+                (function(i) {
+                    setTimeout(function() {
+                        bodovi[i].classList.add('prikazi');
+                    }, i * 100);
+                })(i);
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="static/logo.png" alt="logo" class="logo1">
+        <h1><b>Formula 1</b> </h1>
+    </header>
+    
+    <nav>
+        <a href="/show_sponzor" title="Sponzori">Sponzori</a>
+        <a href="/show_tim" title="Timovi">Timovi</a>
+        <a href="/show_vozaci" title="Vozači">Vozači</a>
+        <a href="/show_automobil" title="Automobili">Automobili</a>
+        <a href="/show_utrka" title="Utrke">Utrke</a>
+        <a href="/show_staza" title="Staze">Staze</a>
+        <a href="/show_nagrada" title="Nagrade">Nagrade</a>
+       <a href="/show_prvenstvo" title="Prvenstva">Prvenstva</a>
+       <a href="/show_rezultat" title="Rezultati">Rezultati</a>
+       
+</nav>
+<div class="container mt-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+<div class="container-fluid mt-4">
+<div class="row align-items-top">
+<div class="col-lg-2 control-buttons">
+                <div class="dropdown mb-2">
+                    <button class="btn btn-secondary dropdown-toggle small-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Odaberite Utrku
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<a class="dropdown-item" href="{{ url_for('izracunaj_rezultate', id_utrka=1000) }}">GULF AIR BAHRAIN GRAND PRIX</a>
+<a class="dropdown-item" href="{{ url_for('izracunaj_rezultate', id_utrka=1001) }}">STC SAUDI ARABIAN GRAND PRIX</a>
+<a class="dropdown-item" href="{{ url_for('izracunaj_rezultate', id_utrka=1002) }}">ROLEX AUSTRALIAN GRAND PRIX</a>
+<a class="dropdown-item" href="{{ url_for('izracunaj_rezultate', id_utrka=1003) }}">AZERBAIJAN GRAND PRIX</a>
+<a class="dropdown-item" href="{{ url_for('izracunaj_rezultate', id_utrka=1004) }}">CRYPTO.COM MIAMI GRAND PRIX</a>
+<a class="dropdown-item" href="{{ url_for('izracunaj_rezultate', id_utrka=1005) }}">QATAR AIRWAYS GRAN PREMIO DEL MADE IN ITALY E DELL EMILIA-ROMAGNA</a>
+<a class="dropdown-item" href="{{ url_for('izracunaj_rezultate', id_utrka=1006) }}">GRAND PRIX DE MONACO</a>
+<a class="dropdown-item" href="{{ url_for('izracunaj_rezultate', id_utrka=1007) }}">AWS GRAN PREMIO DE ESPAÑA</a>
+<a class="dropdown-item" href="{{ url_for('izracunaj_rezultate', id_utrka=1008) }}">PIRELLI GRAND PRIX DU CANADA</a>
+<a class="dropdown-item" href="{{ url_for('izracunaj_rezultate', id_utrka=1009) }}">ROLEX GROSSER PREIS VON ÖSTERREICH</a>
+</div>
+</div>
+<form method="POST" action="/izbrisi_rezultate" class="form-margin-adjust">
+<button type="submit" class="btn btn-danger small-button">Izbriši sve rezultate</button>
+</form>
+<a href="/" class="btn btn-primary small-button"style="margin: 8px 0;">Povratak na početnu stranicu</a>
+</div>
+<div class="bodovi-tablica">
+    
+    <h5>Ukupni bodovi vozača</h5>
+    <table>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Bodovi</th>
+        </tr>
+        {% for bodovi in bodovi_data %}
+        <tr>
+            <td>{{ bodovi[1] }}</td>
+            <td>{{ bodovi[2] }}</td>
+            <td>{{ bodovi[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+<div class="col-lg-10">
+<div class="col-lg-10">
+<h1 class="popis">Popis Rezultata</h1>
+<button onclick="prikaziBodove()">Prikaži bodove</button>
+<br>
+<main>
+<table>
+<tr>
+    <th>Utrka</th>
+    <th>Prvenstvo</th>
+    <th>Ime</th>
+    <th>Prezime</th>
+    <th>Tim</th>
+    <th>Mjesto</th>
+    <th class="bodovi">Bodovi</th>
+    <th>Vrijeme Kruga</th>
+    <th>Broj Kruga</th>
+    </tr>
+    {% for rezultat in rezultat_data %}
+    <tr class="{{ 'divider-row' if loop.index > 1 and rezultat[0] != rezultat_data[loop.index - 2][0] }}">
+    <td>{{ rezultat[0] }}</td>
+    <td>{{ rezultat[1] }}</td>
+    <td>{{ rezultat[2] }}</td>
+    <td>{{ rezultat[3] }}</td>
+    <td>{{ rezultat[4] }}</td>
+    <td>{{ rezultat[5] }}</td>
+    <td class="bodovi">{{ rezultat[6] }}</td>
+    <td>{{ rezultat[7] }}</td>
+    <td>{{ rezultat[8] }}</td>
+    
+    </tr>
+    {% endfor %}
+</table>
+
+</main>
+</div>
+</div>
+</div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
